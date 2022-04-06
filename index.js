@@ -13,7 +13,7 @@ const Intern = require('./lib/Intern');
 // Team Array
 const teamArray = []; 
 
-// Add Manage function using Inquirer Prompts
+// Add Manager function using Inquirer Prompts
 const addManager = () => {
 
     return inquirer.prompt ([
@@ -39,7 +39,7 @@ const addManager = () => {
         }
     ])
     .then(managerInput => {
-        // Pushes Manager info into the Team Array
+        // Pushes Manager information into the Team Array
         const  { name, id, email, officeNumber } = managerInput; 
         const manager = new Manager (name, id, email, officeNumber);
 
@@ -93,7 +93,7 @@ const addEmployees = () => {
         }
     ])
     .then(employeeInfo => {
-        //Push Employee/Intern info into the Team Array
+        //Push Employee/Intern information into the Team Array
         let { name, id, email, role, github, school, confirmAddEmployee } = employeeInfo; 
         let employee; 
 
