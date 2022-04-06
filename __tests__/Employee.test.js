@@ -9,25 +9,25 @@ test('creates an employee object', () => {
 });
 
 test('Employee name', () => {
-    const employeeName = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+    const employee = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
 
-    expect(employeeName.getName()).toEqual(expect.any(String));
+    expect(employee.getName()).toEqual(expect.any(String));
 });
 
 test('Employee ID', () => {
-    const employeeId = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+    const employee = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
 
-    expect(employeeId.getId()).toEqual(expect.any(Number));
+    expect(employee.getId()).toEqual(expect.any(Number));
 });
 
 test('Employee email', () => {
-    const employeeMail = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+    const employee = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
 
-    expect(employeeMail.getEmail()).toEqual(expect.stringContaining(employee.email.toString()));
+    expect(employee.getEmail()).toEqual(expect.stringContaining(employee.email.toString()));
 });
 
 test('Employee role', () => {
-    const employeeRole = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+    const employee = new Employee('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
 
-    expect(employeeRole.getRole()).toEqual("Employee");
+    expect(employee.getRole()).toEqual("Employee");
 }); 

@@ -6,11 +6,11 @@ test('Intern object', () => {
 });
 
 test('Intern school', () => {
-    const internSchool = new Intern('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+    const intern = new Intern('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
     expect(intern.getSchool()).toEqual(expect.stringContaining(intern.school.toString()));
 });
 
-test('Intern role', () => {
-    const internRole = new Intern('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
+test('Intern Role', () => {
+    const intern = new Intern('Bruce Wayne', 1939, 'IamnotBatman@WayneEnterprises.com');
     expect(intern.getRole()).toEqual("Intern");
 }); 
