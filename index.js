@@ -9,9 +9,7 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
-
-// Team Array
-const teamArray = []; 
+const Employee = require('./lib/Employee');
 
 // Add Manager function using Inquirer Prompts
 const addManager = () => {
@@ -38,14 +36,6 @@ const addManager = () => {
             message: "Please enter the manager's office number",
         }
     ])
-    .then(managerInput => {
-        // Pushes Manager information into the Team Array
-        const  { name, id, email, officeNumber } = managerInput; 
-        const manager = new Manager (name, id, email, officeNumber);
-
-        teamArray.push(manager); 
-        console.log(manager); 
-    })
 };
 
 // Add Employee/Intern function using Inquirer Prompts
@@ -88,35 +78,18 @@ const addEmployees = () => {
         {
             type: 'confirm',
             name: 'confirmAddEmployee',
-            message: 'Would you like to add more team members?',
+            message: 'Do you want to add more team members?',
             default: false
         }
-    ])
-    .then(employeeInfo => {
-        //Push Employee/Intern information into the Team Array
-        let { name, id, email, role, github, school, confirmAddEmployee } = employeeInfo; 
-        let employee; 
-
-        if (role === "Engineer") {
-            employee = new Engineer (name, id, email, github);
-
-            console.log(employee);
-
-        } else if (role === "Intern") {
-            employee = new Intern (name, id, email, school);
-
-            console.log(employee);
-        }
-
-        teamArray.push(employee); 
-
-        if (confirmAddEmployee) {
-            return addEmployee(teamArray); 
-        } else {
-            return teamArray;
-        }
-    })
-
+        .then(employeeInput => {
+            // Pushes employee information into the Employee Array
+            const  { name, id, email, github } = managerInput; 
+            const employee = new  (name, id, email, officeNumber);
+    
+            employeeList.push(employee); 
+            console.log(employee); 
+        })
+    ]);
 };
 
 // Generate HTML
@@ -135,11 +108,11 @@ const writeFile = data => {
 
 addManager()
   .then(addEmployee)
-  .then(teamArray => {
-    return generateHTML(teamArray);
+  .then(answers => {
+    return generateHTML(answers);
   })
-  .then(pageHTML => {
-    return writeFile(pageHTML);
+  .then(data => {
+    return writeFile(data);
   })
   .catch(err => {
  console.log(err);
