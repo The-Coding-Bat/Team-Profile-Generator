@@ -11,85 +11,65 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
 const Employee = require('./lib/Employee');
 
+const employeeList = [];
+
 // Add Manager function using Inquirer Prompts
-const addManager = () => {
-
-    return inquirer.prompt ([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please enter the team Manager.', 
-        },
-        {
-            type: 'input',
-            name: 'id',
-            message: "Please enter the manager's ID.",
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "Please enter the manager's email.",
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: "Please enter the manager's office number",
-        }
-    ])
-};
-
-// Add Employee/Intern function using Inquirer Prompts
-const addEmployees = () => {
+const addEmployee = employeeProfile => {
 
     return inquirer.prompt ([
         {
             type: 'list',
             name: 'role',
-            message: "Please choose your employee's role",
-            choices: ['Engineer', 'Intern']
-        },
+            message: 'What is the Employee Role?',
+            choices: ['Manager','Engineer','Intern']
+          },
         {
             type: 'input',
             name: 'name',
-            message: "What's the employee's name?", 
+            message: 'What is the name of the employee?',
         },
         {
             type: 'input',
             name: 'id',
-            message: "Please enter the employee's ID.",
+            message: 'What is the ID number of the employee?',
         },
         {
             type: 'input',
             name: 'email',
-            message: "Please enter the employee's email.",
+            message: 'What is the employee email?',
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'Please enter the office number of the manager.',
+            when:(officeNumberInput) => officeNumberInput.role ==='Manager',
         },
         {
             type: 'input',
             name: 'github',
-            message: "Please enter the employee's github username.",
-            when: (input) => input.role === "Engineer",
-        },
-        {
+            message: 'Please enter the GitHub username for the employee.',
+            when:(githubInput) => githubInput.role ==='Engineer', 
+          },
+          {
             type: 'input',
             name: 'school',
-            message: "Please enter the intern's school",
-            when: (input) => input.role === "Intern",
-        },
-        {
+            message: 'Please enter the name of the interns school.',
+            when:(schoolInput) => schoolInput.role ==='Intern', 
+          },
+          {
             type: 'confirm',
             name: 'confirmAddEmployee',
-            message: 'Do you want to add more team members?',
-            default: false
+            message: 'Would you like to enter another employee?',
+            default: false,
+          }
+    ])
+    .then(employeeData => {
+        if (employeeData.confirmAddProject) {
+          return addEmployee(employeeProfile);
+        } else {
+          return employeeProfile;
         }
-        .then(employeeInput => {
-            // Pushes employee information into the Employee Array
-            const  { name, id, email, github } = managerInput; 
-            const employee = new  (name, id, email, officeNumber);
-    
-            employeeList.push(employee); 
-            console.log(employee); 
-        })
-    ]);
+    });
 };
 
 // Generate HTML
@@ -106,8 +86,7 @@ const writeFile = data => {
     })
 }; 
 
-addManager()
-  .then(addEmployee)
+addEmployee()
   .then(answers => {
     return generateHTML(answers);
   })
