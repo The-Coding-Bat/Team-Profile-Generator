@@ -1,5 +1,4 @@
 // Generate Employee Functions
-
 const generateManager = manager => {
     return `
     <div id="name-header">
@@ -42,7 +41,6 @@ const generateIntern = intern => {
 }
 
 // Generate employee information to push into the Team Profiles function using an array
-
 const generateHTML = employeeList => {
     employeeArray = [];
     for (let i = 0; employeeList.length>i; i++){ 
@@ -64,7 +62,6 @@ const generateHTML = employeeList => {
 };
 
 // Complete HTML Generation Function 
-
 const generateTeamProfiles = teamProfile => {   
     return`
     <!DOCTYPE html>

@@ -71,27 +71,22 @@ const addEmployee = employeeProfile => {
     ])
     .then(employeeInformation=> {
       // Storing employee types into EmployeeList array
-
       let { name, id, email, role, officeNumber, github, school, confirmAddEmployee } = employeeInformation; 
       let employeeInfo; 
 
       // Set Roles into array as objects 
-
       if (role === "Engineer") {
           employeeInfo = new Engineer (name, id, email, github);
 
           console.log(employeeInfo);
-
       } else if (role === "Intern") {
           employeeInfo = new Intern (name, id, email, school);
 
           console.log(employeeInfo);
-
       } else if (role === "Manager") {
         employeeInfo = new Manager (name, id, email, officeNumber)
 
         console.log(employeeInfo);
-
       }
 
       employeeList.push(employeeInfo); 
