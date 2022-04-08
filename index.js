@@ -15,6 +15,11 @@ const employeeList = [];
 
 // Add Manager function using Inquirer Prompts
 const addEmployee = employeeProfile => {
+    console.log(`
+    =======================
+      Add a New Employee
+    =======================
+    `)
 
     return inquirer.prompt ([
         {
@@ -64,12 +69,32 @@ const addEmployee = employeeProfile => {
           }
     ])
     .then(employeeData => {
-        if (employeeData.confirmAddProject) {
-          return addEmployee(employeeProfile);
-        } else {
-          return employeeProfile;
-        }
-    });
+      // data for employee types 
+
+      let { name, id, email, role, officeNumber, github, school, confirmAddEmployee } = employeeData; 
+      let employee; 
+
+      if (role === "Engineer") {
+          employee = new Engineer (name, id, email, github);
+
+          console.log(employee);
+
+      } else if (role === "Intern") {
+          employee = new Intern (name, id, email, school);
+
+          console.log(employee);
+      } else if (role === "Manager") {
+        employee = new Manager (name, id, email, officeNumber)
+      }
+
+      employeeList.push(employee); 
+
+      if (confirmAddEmployee) {
+          return addEmployee(employeeList); 
+      } else {
+          return employeeList;
+      }
+  });
 };
 
 // Generate HTML
