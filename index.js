@@ -68,10 +68,10 @@ const addEmployee = employeeProfile => {
             default: false,
           }
     ])
-    .then(employeeData => {
-      // data for employee types 
+    .then(employeeInformation=> {
+      // Storing employee types into EmployeeList array
 
-      let { name, id, email, role, officeNumber, github, school, confirmAddEmployee } = employeeData; 
+      let { name, id, email, role, officeNumber, github, school, confirmAddEmployee } = employeeInformation; 
       let employee; 
 
       if (role === "Engineer") {
@@ -83,6 +83,7 @@ const addEmployee = employeeProfile => {
           employee = new Intern (name, id, email, school);
 
           console.log(employee);
+
       } else if (role === "Manager") {
         employee = new Manager (name, id, email, officeNumber)
       }
