@@ -1,5 +1,5 @@
 // Link to page creation
-const generateHTML = require('./HTML/generateHTML');
+const generateHTML = require('./HTML/generateHTML.js');
 
 // Node
 const fs = require('fs'); 
@@ -11,9 +11,10 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
 const Employee = require('./lib/Employee');
 
+// Employee Array
 const employeeList = [];
 
-// Add Manager function using Inquirer Prompts
+// Add Employee function using Inquirer Prompts
 const addEmployee = employeeProfile => {
     console.log(`
     =======================
@@ -72,26 +73,28 @@ const addEmployee = employeeProfile => {
       // Storing employee types into EmployeeList array
 
       let { name, id, email, role, officeNumber, github, school, confirmAddEmployee } = employeeInformation; 
-      let employee; 
+      let employeeInfo; 
+
+      // Set Roles into array as objects 
 
       if (role === "Engineer") {
-          employee = new Engineer (name, id, email, github);
+          employeeInfo = new Engineer (name, id, email, github);
 
-          console.log(employee);
+          console.log(employeeInfo);
 
       } else if (role === "Intern") {
-          employee = new Intern (name, id, email, school);
+          employeeInfo = new Intern (name, id, email, school);
 
-          console.log(employee);
+          console.log(employeeInfo);
 
       } else if (role === "Manager") {
-        employee = new Manager (name, id, email, officeNumber)
+        employeeInfo = new Manager (name, id, email, officeNumber)
 
-        console.log(employee);
-        
+        console.log(employeeInfo);
+
       }
 
-      employeeList.push(employee); 
+      employeeList.push(employeeInfo); 
 
       if (confirmAddEmployee) {
           return addEmployee(employeeList); 
@@ -116,8 +119,8 @@ const writeFile = data => {
 }; 
 
 addEmployee()
-  .then(answers => {
-    return generateHTML(answers);
+  .then(employeeList => {
+    return generateHTML(employeeList);
   })
   .then(data => {
     return writeFile(data);
