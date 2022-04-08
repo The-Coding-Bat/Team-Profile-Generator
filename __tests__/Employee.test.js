@@ -6,5 +6,4 @@ test("creates an employee section", () => {
   
     expect(employee.name).toEqual(expect.any(String));
     expect(employee.email).toContain("@"); 
-    expect(employee.idNumber).toEqual(expect.any(Number));
   });

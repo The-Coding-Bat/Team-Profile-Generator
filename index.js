@@ -86,6 +86,9 @@ const addEmployee = employeeProfile => {
 
       } else if (role === "Manager") {
         employee = new Manager (name, id, email, officeNumber)
+
+        console.log(employee);
+        
       }
 
       employeeList.push(employee); 
