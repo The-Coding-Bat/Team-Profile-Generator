@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    background-color: black !important;
+}
+
+#team-header {
+    background-color: darkviolet;
+    -webkit-text-stroke: 1px goldenrod;
+    border: 3px goldenrod solid;
+    height: 120px;
+    width: 100%;
+    font-size: 70px;
+    font-weight: bolder;
+    color: black !important;
+}
+
+.employee-card {
+    box-sizing: border-box;
+    height: 320px;
+    background-color: darkviolet;
+    border: 3px gold solid;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.name-header {
+    color: black;
+    background-color: goldenrod;
+    border: 5px black solid;
+    height: 60px;
+}
+
+.employee-names {
+    font-size: 40px;
+}
+
+.employee-info {
+    font-size: 30px;
+}
+
+span {
+    display: block;
+    background-color: black;
+    border: 1px whitesmoke solid;
+}
